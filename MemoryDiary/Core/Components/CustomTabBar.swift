@@ -9,14 +9,14 @@ import SwiftUI
 
 enum Tab: String, CaseIterable {
     case read = "Read"
-    case add = "Add"
+    case create = "Add"
     case profile = "Profile"
     
     var icon: String {
         switch self {
         case .read:
             "book"
-        case .add:
+        case .create:
             "plus"
         case .profile:
             "person"
@@ -55,7 +55,7 @@ struct CustomTabBar: View {
     var body: some View {
         HStack(spacing: 0) {
             TabBarButton(animation: animation, tab: .read, selectedTab: $selectedTab)
-            TabBarButton(animation: animation, tab: .add, selectedTab: $selectedTab)
+            TabBarButton(animation: animation, tab: .create, selectedTab: $selectedTab)
             TabBarButton(animation: animation, tab: .profile, selectedTab: $selectedTab)
         }
         .frame(maxWidth: .infinity)
@@ -66,6 +66,6 @@ struct CustomTabBar: View {
     }
 }
 #Preview(traits: .sizeThatFitsLayout, body: {
-    CustomTabBar(selectedTab: .constant(.add))
+    CustomTabBar(selectedTab: .constant(.create))
 })
 

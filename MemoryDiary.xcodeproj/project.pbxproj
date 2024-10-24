@@ -15,7 +15,7 @@
 		B49D5A152C962B3300E036EB /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A142C962B3300E036EB /* MainTab.swift */; };
 		B49D5A1A2C962B6B00E036EB /* AppwriteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A192C962B6B00E036EB /* AppwriteClient.swift */; };
 		B49D5A1C2C962B8E00E036EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A1B2C962B8E00E036EB /* User.swift */; };
-		B49D5A1E2C962BAE00E036EB /* DMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A1D2C962BAE00E036EB /* DMemory.swift */; };
+		B49D5A1E2C962BAE00E036EB /* Memory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A1D2C962BAE00E036EB /* Memory.swift */; };
 		B49D5A222C962BFF00E036EB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A212C962BFF00E036EB /* AuthViewModel.swift */; };
 		B49D5A252C962C2300E036EB /* AuthenticatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A242C962C2300E036EB /* AuthenticatedView.swift */; };
 		B49D5A272C962C3900E036EB /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A262C962C3900E036EB /* AuthenticationView.swift */; };
@@ -32,7 +32,7 @@
 		B49D5A142C962B3300E036EB /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
 		B49D5A192C962B6B00E036EB /* AppwriteClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteClient.swift; sourceTree = "<group>"; };
 		B49D5A1B2C962B8E00E036EB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		B49D5A1D2C962BAE00E036EB /* DMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMemory.swift; sourceTree = "<group>"; };
+		B49D5A1D2C962BAE00E036EB /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
 		B49D5A212C962BFF00E036EB /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B49D5A242C962C2300E036EB /* AuthenticatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedView.swift; sourceTree = "<group>"; };
 		B49D5A262C962C3900E036EB /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -43,6 +43,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B43A83752CC9A11E00CC6367 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		B43A837C2CC9BE1F00CC6367 /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
+		B4AFEFAA2CCA6E1400504804 /* Create */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Create; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +98,7 @@
 		B49D5A132C962B1A00E036EB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B4AFEFAA2CCA6E1400504804 /* Create */,
 				B43A837C2CC9BE1F00CC6367 /* Components */,
 				B49D5A042C962ABF00E036EB /* ContentView.swift */,
 				B49D5A022C962ABF00E036EB /* MemoryDiaryApp.swift */,
@@ -119,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				B49D5A1B2C962B8E00E036EB /* User.swift */,
-				B49D5A1D2C962BAE00E036EB /* DMemory.swift */,
+				B49D5A1D2C962BAE00E036EB /* Memory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,6 +171,7 @@
 			fileSystemSynchronizedGroups = (
 				B43A83752CC9A11E00CC6367 /* Services */,
 				B43A837C2CC9BE1F00CC6367 /* Components */,
+				B4AFEFAA2CCA6E1400504804 /* Create */,
 			);
 			name = MemoryDiary;
 			packageProductDependencies = (
@@ -233,7 +236,7 @@
 			files = (
 				B49D5A252C962C2300E036EB /* AuthenticatedView.swift in Sources */,
 				B49D5A052C962ABF00E036EB /* ContentView.swift in Sources */,
-				B49D5A1E2C962BAE00E036EB /* DMemory.swift in Sources */,
+				B49D5A1E2C962BAE00E036EB /* Memory.swift in Sources */,
 				B49D5A152C962B3300E036EB /* MainTab.swift in Sources */,
 				B49D5A292C962C4F00E036EB /* SignInView.swift in Sources */,
 				B49D5A2B2C962C6300E036EB /* SignUpView.swift in Sources */,

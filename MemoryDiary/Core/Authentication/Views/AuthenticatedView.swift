@@ -28,5 +28,7 @@ struct AuthenticatedView: View {
 }
 
 #Preview {
-    AuthenticatedView()
+    @Previewable @State var authVM = AuthViewModel()
+    authVM.state = .authenticated
+    return AuthenticatedView(authVM: authVM)
 }

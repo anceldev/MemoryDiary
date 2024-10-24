@@ -120,7 +120,7 @@ final class AuthViewModel {
     }
     private func signOut() async throws {
         do {
-            let result = try await AppwriteClient.shared.account.deleteSession(sessionId: self.sessionId)
+            let _ = try await AppwriteClient.shared.account.deleteSession(sessionId: self.sessionId)
             self.email = ""
             self.password = ""
             self.state = .unauthenticated

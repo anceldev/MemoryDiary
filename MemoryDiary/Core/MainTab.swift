@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-
 struct MainTab: View {
     @Environment(AuthViewModel.self) var authVM
-    @State var selectedTab: Tab = .add
+    @State var selectedTab: Tab = .create
     
     init() {
         UITabBar.appearance().isHidden = true
@@ -22,8 +21,8 @@ struct MainTab: View {
                 switch selectedTab {
                 case .read:
                     Text("Read tab")
-                case .add:
-                    Text("Add tab")
+                case .create:
+                    CreateMemory()
                 case .profile:
                     VStack {
                         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)

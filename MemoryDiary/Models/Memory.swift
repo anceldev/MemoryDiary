@@ -9,9 +9,8 @@ import Appwrite
 import CoreLocation
 import Foundation
 
-final class DMemory: Codable {
+final class Memory: Codable {
     let id: String
-    
     let heading: String
     let content: String
     let timestampt: Date
@@ -29,9 +28,8 @@ final class DMemory: Codable {
     }
 }
 
-extension DMemory {
-    
-    static let memoryPreview: DMemory = .init(
+extension Memory {
+    static let memoryPreview: Memory = .init(
         id: ID.unique(),
         heading: "Sunday celebration",
         content: "Today our Pastor preached about the honor and how can we become blessed through that. She talked about Jesus, about following him with spirit and not just with knowledge. This is the first of twelve preaches about honor",
@@ -41,12 +39,12 @@ extension DMemory {
         "honor",
         "celebration"
         ])
-    static let memoryPreviews: [DMemory] = [DMemory.memoryPreview]
+    
+    static let memoryPreviews: [Memory] = [Memory.memoryPreview]
     
     class MemoryLocation: Codable {
         let latitude: Double
         let longitude: Double
-        
         
         init(latitude: Double, longitude: Double) {
             self.latitude = latitude
