@@ -9,15 +9,18 @@ import SwiftUI
 
 struct AuthenticationView: View {
     
-    var viewModel: AuthViewModel
+//    var viewModel: AuthViewModel
+    @Environment(AuthViewModel.self) var authVM
     
     var body: some View {
         VStack {
-            switch viewModel.flow {
+            switch authVM.flow {
             case .signIn:
-                SignInView(viewModel: viewModel)
+                SignInView()
+                    .environment(authVM)
             case .signUp:
-                SignUpView(viewModel: viewModel)
+                SignUpView()
+                    .environment(authVM)
             case .signOut:
                 Text("This is sign out view")
             }
@@ -26,5 +29,6 @@ struct AuthenticationView: View {
 }
 
 #Preview {
-    AuthenticationView(viewModel: AuthViewModel())
+    AuthenticationView()
+        .environment(AuthViewModel())
 }

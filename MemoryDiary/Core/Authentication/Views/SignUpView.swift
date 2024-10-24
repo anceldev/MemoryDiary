@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SignUpView: View {
     
-    @Bindable var viewModel: AuthViewModel
-    
+    @Environment(AuthViewModel.self) var authVM
     var body: some View {
+        @Bindable var viewModel = authVM
         VStack {
             Text("Login")
             TextField("Username", text: $viewModel.username)
@@ -20,7 +20,7 @@ struct SignUpView: View {
                 .keyboardType(.emailAddress)
             SecureField("Password", text: $viewModel.password)
             Button(action: {
-                viewModel.login()
+                viewModel.authAction()
             }, label: {
                 Text("Login")
             })

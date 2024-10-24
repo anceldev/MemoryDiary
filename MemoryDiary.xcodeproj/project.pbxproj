@@ -3,17 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B43A83812CC9C42800CC6367 /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = B43A83802CC9C42800CC6367 /* Appwrite */; };
 		B49D5A032C962ABF00E036EB /* MemoryDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A022C962ABF00E036EB /* MemoryDiaryApp.swift */; };
 		B49D5A052C962ABF00E036EB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A042C962ABF00E036EB /* ContentView.swift */; };
 		B49D5A072C962AC000E036EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B49D5A062C962AC000E036EB /* Assets.xcassets */; };
 		B49D5A0A2C962AC000E036EB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B49D5A092C962AC000E036EB /* Preview Assets.xcassets */; };
-		B49D5A122C962AF000E036EB /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = B49D5A112C962AF000E036EB /* Appwrite */; };
 		B49D5A152C962B3300E036EB /* MainTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A142C962B3300E036EB /* MainTab.swift */; };
-		B49D5A1A2C962B6B00E036EB /* AppwriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A192C962B6B00E036EB /* AppwriteManager.swift */; };
+		B49D5A1A2C962B6B00E036EB /* AppwriteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A192C962B6B00E036EB /* AppwriteClient.swift */; };
 		B49D5A1C2C962B8E00E036EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A1B2C962B8E00E036EB /* User.swift */; };
 		B49D5A1E2C962BAE00E036EB /* DMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A1D2C962BAE00E036EB /* DMemory.swift */; };
 		B49D5A222C962BFF00E036EB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49D5A212C962BFF00E036EB /* AuthViewModel.swift */; };
@@ -30,7 +30,7 @@
 		B49D5A062C962AC000E036EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B49D5A092C962AC000E036EB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B49D5A142C962B3300E036EB /* MainTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTab.swift; sourceTree = "<group>"; };
-		B49D5A192C962B6B00E036EB /* AppwriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteManager.swift; sourceTree = "<group>"; };
+		B49D5A192C962B6B00E036EB /* AppwriteClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteClient.swift; sourceTree = "<group>"; };
 		B49D5A1B2C962B8E00E036EB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B49D5A1D2C962BAE00E036EB /* DMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMemory.swift; sourceTree = "<group>"; };
 		B49D5A212C962BFF00E036EB /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -40,12 +40,17 @@
 		B49D5A2A2C962C6300E036EB /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B43A83752CC9A11E00CC6367 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
+		B43A837C2CC9BE1F00CC6367 /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		B49D59FC2C962ABF00E036EB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B49D5A122C962AF000E036EB /* Appwrite in Frameworks */,
+				B43A83812CC9C42800CC6367 /* Appwrite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +76,8 @@
 		B49D5A012C962ABF00E036EB /* MemoryDiary */ = {
 			isa = PBXGroup;
 			children = (
-				B49D5A182C962B5B00E036EB /* AppwriteClient */,
+				B43A83752CC9A11E00CC6367 /* Services */,
+				B49D5A182C962B5B00E036EB /* Appwrite */,
 				B49D5A132C962B1A00E036EB /* Core */,
 				B49D5A172C962B5600E036EB /* Models */,
 				B49D5A062C962AC000E036EB /* Assets.xcassets */,
@@ -91,6 +97,7 @@
 		B49D5A132C962B1A00E036EB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B43A837C2CC9BE1F00CC6367 /* Components */,
 				B49D5A042C962ABF00E036EB /* ContentView.swift */,
 				B49D5A022C962ABF00E036EB /* MemoryDiaryApp.swift */,
 				B49D5A142C962B3300E036EB /* MainTab.swift */,
@@ -117,12 +124,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		B49D5A182C962B5B00E036EB /* AppwriteClient */ = {
+		B49D5A182C962B5B00E036EB /* Appwrite */ = {
 			isa = PBXGroup;
 			children = (
-				B49D5A192C962B6B00E036EB /* AppwriteManager.swift */,
+				B49D5A192C962B6B00E036EB /* AppwriteClient.swift */,
 			);
-			path = AppwriteClient;
+			path = Appwrite;
 			sourceTree = "<group>";
 		};
 		B49D5A1F2C962BE300E036EB /* ViewModels */ = {
@@ -159,9 +166,13 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				B43A83752CC9A11E00CC6367 /* Services */,
+				B43A837C2CC9BE1F00CC6367 /* Components */,
+			);
 			name = MemoryDiary;
 			packageProductDependencies = (
-				B49D5A112C962AF000E036EB /* Appwrite */,
+				B43A83802CC9C42800CC6367 /* Appwrite */,
 			);
 			productName = MemoryDiary;
 			productReference = B49D59FF2C962ABF00E036EB /* MemoryDiary.app */;
@@ -192,7 +203,7 @@
 			);
 			mainGroup = B49D59F62C962ABF00E036EB;
 			packageReferences = (
-				B49D5A102C962AF000E036EB /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
+				B43A837F2CC9C42800CC6367 /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
 			);
 			productRefGroup = B49D5A002C962ABF00E036EB /* Products */;
 			projectDirPath = "";
@@ -228,7 +239,7 @@
 				B49D5A2B2C962C6300E036EB /* SignUpView.swift in Sources */,
 				B49D5A222C962BFF00E036EB /* AuthViewModel.swift in Sources */,
 				B49D5A272C962C3900E036EB /* AuthenticationView.swift in Sources */,
-				B49D5A1A2C962B6B00E036EB /* AppwriteManager.swift in Sources */,
+				B49D5A1A2C962B6B00E036EB /* AppwriteClient.swift in Sources */,
 				B49D5A1C2C962B8E00E036EB /* User.swift in Sources */,
 				B49D5A032C962ABF00E036EB /* MemoryDiaryApp.swift in Sources */,
 			);
@@ -438,7 +449,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B49D5A102C962AF000E036EB /* XCRemoteSwiftPackageReference "sdk-for-apple" */ = {
+		B43A837F2CC9C42800CC6367 /* XCRemoteSwiftPackageReference "sdk-for-apple" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/appwrite/sdk-for-apple.git";
 			requirement = {
@@ -449,9 +460,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B49D5A112C962AF000E036EB /* Appwrite */ = {
+		B43A83802CC9C42800CC6367 /* Appwrite */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B49D5A102C962AF000E036EB /* XCRemoteSwiftPackageReference "sdk-for-apple" */;
+			package = B43A837F2CC9C42800CC6367 /* XCRemoteSwiftPackageReference "sdk-for-apple" */;
 			productName = Appwrite;
 		};
 /* End XCSwiftPackageProductDependency section */

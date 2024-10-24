@@ -7,11 +7,12 @@
 
 import Foundation
 
+
 final class User: Codable {
-    let id: String
-    let name: String
-    let email: String
-    let password: String
+    var id: String
+    var name: String
+    var email: String
+    var password: String
     
     
     private enum CodingKeys: String, CodingKey {

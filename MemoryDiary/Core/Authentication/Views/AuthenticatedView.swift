@@ -9,17 +9,19 @@ import SwiftUI
 
 struct AuthenticatedView: View {
     
-    @State var authViewModel = AuthViewModel()
+    @State var authVM = AuthViewModel()
     
     var body: some View {
         VStack {
-            switch authViewModel.state {
+            switch authVM.state {
             case .authenticated:
                 MainTab()
+                    .environment(authVM)
             case .authenticating:
                 ProgressView()
             case .unauthenticated:
-                AuthenticationView(viewModel: authViewModel)
+                AuthenticationView()
+                    .environment(authVM)
             }
         }
     }
