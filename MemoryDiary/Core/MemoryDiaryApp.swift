@@ -11,7 +11,7 @@ import SwiftUI
 struct MemoryDiaryApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AuthenticatedView()
         }
     }
 }

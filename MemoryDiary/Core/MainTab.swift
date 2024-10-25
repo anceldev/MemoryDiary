@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainTab: View {
     @Environment(AuthViewModel.self) var authVM
-    @State var selectedTab: Tab = .create
+    @State var selectedTab: Tab = .read
     
     init() {
         UITabBar.appearance().isHidden = true
@@ -27,12 +27,12 @@ struct MainTab: View {
                     VStack {
                         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
                         Text(authVM.user?.name ?? "No name")
-                        Text(authVM.user?.email ?? "No email")
+                            Text(authVM.user?.email ?? "No email")
                         Button(role: .cancel) {
                             authVM.flow = .signOut
                             authVM.authAction()
                         } label: {
-                            Text("Log out")
+                                Text("Log out")
                         }
                     }
                 }

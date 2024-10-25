@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum ToolButtons {
-    case photo, title, tag, mappin, date, text
+    case photo, title, tag, mappin, date, content
     var title: String {
         switch self {
         case .photo: "Image"
@@ -16,7 +16,7 @@ enum ToolButtons {
         case .tag: "Tag"
         case .mappin: "Map pin"
         case .date: "Date"
-        case .text: "Text"
+        case .content: "Text"
         }
     }
     var icon: String {
@@ -26,7 +26,7 @@ enum ToolButtons {
         case .tag: "number"
         case .mappin: "mappin"
         case .date: "calendar"
-        case .text: "text.justify.left"
+        case .content: "text.justify.left"
         }
     }
 }
@@ -43,6 +43,7 @@ struct ToolButton: View {
             Label(toolButton.title, systemImage: toolButton.icon)
                 .labelStyle(.iconOnly)
                 .foregroundStyle(selectedButton == toolButton ? .white : .gray1)
+                .font(.title2)
         }
     }
 }
@@ -60,8 +61,8 @@ struct ToolsBar: View {
                             .foregroundStyle(.white)
                     }
                 }
-                .frame(width: size.width * 0.52)
-                .frame(height: 30)
+                .frame(width: size.width * 0.6)
+                .frame(height: 38)
 //                .background(.bg.opacity(0.7))
                 .background(.bg2)
                 .clipShape(
@@ -78,10 +79,10 @@ struct ToolsBar: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout, body: {
-    ToolsBar(selectedButton: .constant(.text) ,toolButtons: [
+    ToolsBar(selectedButton: .constant(.content) ,toolButtons: [
         (ToolButtons.photo, { print("Adding photo...")}),
         (ToolButtons.title, { print("Adding title...") }),
-        (ToolButtons.text, { print("Adding text...")}),
+        (ToolButtons.content, { print("Adding text...")}),
         (ToolButtons.tag, { print("Adding tag") }),
         (ToolButtons.mappin, { print("Adding location...")}),
         (ToolButtons.date, { print("Adding date...")})

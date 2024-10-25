@@ -11,16 +11,18 @@ import Foundation
 
 final class Memory: Codable {
     let id: String
-    let heading: String
+    let heading: URL?
+    let title: String
     let content: String
-    let timestampt: Date
+    let timestampt: Date?
     let location: MemoryLocation?
     let tags: [String]
     
     
-    init(id: String = ID.unique() , heading: String = "", content: String = "", timestampt: Date, location: MemoryLocation?, tags: [String] = []) {
+    init(id: String = ID.unique() , heading: URL? = nil, title: String = "", content: String = "", timestampt: Date? = nil, location: MemoryLocation?, tags: [String] = []) {
         self.id = id
         self.heading = heading
+        self.title = title
         self.content = content
         self.timestampt = timestampt
         self.location = location
@@ -31,9 +33,10 @@ final class Memory: Codable {
 extension Memory {
     static let memoryPreview: Memory = .init(
         id: ID.unique(),
-        heading: "Sunday celebration",
+        heading: nil,
+        title: "Sunday celebration",
         content: "Today our Pastor preached about the honor and how can we become blessed through that. She talked about Jesus, about following him with spirit and not just with knowledge. This is the first of twelve preaches about honor",
-        timestampt: .now,
+        timestampt: nil,
         location: .init(latitude: 41.631149, longitude: -4.747001),
         tags: [
         "honor",
@@ -41,15 +44,14 @@ extension Memory {
         ])
     
     static let memoryPreviews: [Memory] = [Memory.memoryPreview]
+}
+class MemoryLocation: Codable {
+    let latitude: Double
+    let longitude: Double
     
-    class MemoryLocation: Codable {
-        let latitude: Double
-        let longitude: Double
-        
-        init(latitude: Double, longitude: Double) {
-            self.latitude = latitude
-            self.longitude = longitude
-        }
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
     }
 }
 
