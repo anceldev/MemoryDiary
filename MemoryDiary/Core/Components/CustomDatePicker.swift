@@ -12,76 +12,54 @@ struct CustomDatePicker: View {
     @State var currentMonth: Int
     @State var newDate: Date
     
-    
-//    @Binding var pickedDate: Date?
-    @Binding var pickedDate: Date
-    var title: String?
-    
+    @Binding var selectedDate: Date
     let days = ["S", "M", "T", "W", "T", "F", "S"]
-//    var datePicked: Bool {
-//        if pickedDate == nil {
-//            return false
-//        }
-//        return true
-//    }
-    
     @Environment(\.dismiss) var dismiss
     
     init(title: String? = nil, pickedDate: Binding<Date>) {
         self._currentDate = State(initialValue: .now)
         self._currentMonth = State(initialValue: 0)
         self._newDate = State(initialValue: .now)
-        self._pickedDate = pickedDate
-        self.title = title
+        self._selectedDate = pickedDate
     }
     
     var body: some View {
         VStack {
-//            ZStack {
-//                if title != nil {
-//                    Text(title!)
-//                        .font(.system(size: 20, weight: .regular, design: .rounded))
-//                        .foregroundStyle(.gray)
-//                }
-//                HStack {
-//                    Spacer()
-//                    Button(action: {
-//                        dismiss()
-//                    }, label: {
-//                        Image(systemName: "x")
-//                    })
-//                }
-//            }
             HStack(spacing: 20, content: {
                 Button(action: {
-                    withAnimation {
-                        currentMonth -= 1
-                    }
+                    withAnimation { currentMonth -= 1 }
                 }, label: {
-                    Image(systemName: "chevron.left")
-                        .font(.headline)
+                    Circle()
+                        .frame(width: 16)
+                        .overlay {
+                            Image(systemName: "chevron.left")
+                                .font(.caption2)
+                                .foregroundStyle(.bg)
+                        }
                 })
                 Spacer(minLength: 0)
                 HStack(alignment: .center, spacing: 10, content: {
                     Text(extraDate()[0])
                     Text(extraDate()[1])
                 })
-                .font(.system(size: 16, weight: .medium))
+                .font(.system(size: 16, weight: .semibold))
                 .foregroundStyle(.white)
                 Spacer(minLength: 0)
                 Button(action: {
-                    withAnimation {
-                        currentMonth += 1
-                    }
+                    withAnimation { currentMonth += 1 }
                 }, label: {
-                    Image(systemName: "chevron.right")
-                        .font(.headline)
+                    Circle()
+                        .frame(width: 16)
+                        .overlay {
+                            Image(systemName: "chevron.right")
+                                .font(.caption2)
+                                .foregroundStyle(.bg)
+                        }
                 })
             })
             .foregroundStyle(.gray)
             .padding(.horizontal)
             .padding(.bottom, 25)
-            
             HStack(spacing: 0, content: {
                 ForEach(days, id: \.self) { day in
                     Text(day)
@@ -107,63 +85,45 @@ struct CustomDatePicker: View {
                         }
                 }
             })
-            Button(action: {
-//                newDate = currentDate
-//                withAnimation(.spring) {
-//                    pickedDate = newDate
-//                    currentDate = pickedDate!
-//                }
-                withAnimation(.spring) {
-                    pickedDate = currentDate
-                }
-            }, label: {
-                Text("Save")
-            })
-//            .buttonStyle(.mainButton())
-            Button(action: {
-                withAnimation(.spring) {
-                    currentDate = .now
-                    pickedDate = currentDate
-                    print("Picked date is now = nil \(String(describing: pickedDate))")
-                }
-            }, label: {
-                Text("Clear")
-            })
-//            .buttonStyle(.mainButton(.cancel))
+            HStack(spacing: 30) {
+                Button(action: {
+                    withAnimation(.spring) { selectedDate = currentDate }
+                }, label: { Text("Save") })
+                
+                Button(action: {
+                    withAnimation(.spring) {
+                        currentDate = .now
+                        selectedDate = currentDate
+                    }
+                }, label: { Text("Clear") })
+            }
+            .foregroundStyle(.gray1)
         }
         .padding(16)
         .onChange(of: currentMonth) { oldValue, newValue in
             currentDate = getCurrentMonth()
         }
-        .background(.bg)
+        .background(.toolbar)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .onChange(of: currentDate) {
+            print("Current day is:", currentDate)
+            print("picked date is: ", selectedDate)
+        }
     }
     
     @ViewBuilder
     private func CardDateView(value: DateValue) -> some View {
         VStack {
             if value.day != -1 {
-                if isSameDay(date1: pickedDate, date2: value.date) {
+                if isSameDay(date1: currentDate, date2: value.date) {
+                        Text("\(value.day)")
+                        .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .frame(width: 20, height: 20)
+                } else if isSameDay(date1: selectedDate, date2: value.date) {
                     Text("\(value.day)")
                         .font(.system(size: 12))
-                        .foregroundStyle(.bg)
-                        .frame(width: 20, height: 20)
-                        .background(
-                            backgroundCardView(color: .orange)
-                        )
-//                        .background(
-//                            LinearGradient(colors: [.pink], startPoint: .bottom, endPoint: .top)
-//                                .shadow(.inner(color: .pink, radius: 1, x: 0, y: -3))
-//                        )
-                        
-                        .clipShape(Circle())
-                } else if isSameDay(date1: currentDate, date2: value.date) {
-                    Text("\(value.day)")
-                        .font(.system(size: 12))
-                        .foregroundStyle(isSameDay(date1: value.date, date2: currentDate) ? .bg.opacity(0.8) : .red)
-                        
-//                        .background(
-//                            backgroundCardView(color: .pink)
-//                        )
+                        .foregroundStyle(isSameDay(date1: value.date, date2: selectedDate) ? .white : .red)
                 } else {
                     Text("\(value.day)")
                         .font(.system(size: 12, weight: .bold))
@@ -177,9 +137,6 @@ struct CustomDatePicker: View {
     
     @ViewBuilder
     private func backgroundCardView(color: Color) -> some View {
-//        RoundedRectangle(cornerRadius: 8)
-//            .fill(color)
-//            .frame(width: 45, height: 33)
         Circle()
             .fill(.orange)
             .frame(width: 24, height: 24)
@@ -218,6 +175,7 @@ struct CustomDatePicker: View {
         for _ in 0..<firstWeekDay - 1 {
             days.insert(DateValue(day: -1, date: Date()), at: 0)
         }
+        
         return days
     }
     
@@ -229,12 +187,14 @@ struct CustomDatePicker: View {
 }
 
 extension Date {
+    
     func getAllDates() -> [Date] {
         let calendar = Calendar.current
         let startDate = calendar.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
         let range = calendar.range(of: .day, in: .month, for: startDate)
+        
         return range!.compactMap { day -> Date in
-            return calendar.date(byAdding: .day, value: day - 1, to: startDate)!
+            return calendar.date(bySettingHour: 12, minute: 0, second: 0, of: calendar.date(byAdding: .day, value: day - 1, to: startDate)!)!
         }
     }
 }
@@ -243,7 +203,7 @@ extension Date {
 #Preview(traits: .sizeThatFitsLayout, body: {
     @Previewable @State var pickedDate: Date = .now
     return  VStack {
-        CustomDatePicker(title: "Title", pickedDate: $pickedDate)
+        CustomDatePicker(pickedDate: $pickedDate)
         Text(pickedDate, style: .date)
     }
 })

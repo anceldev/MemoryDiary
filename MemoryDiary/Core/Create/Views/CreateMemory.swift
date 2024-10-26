@@ -15,10 +15,14 @@ struct CreateMemory: View {
     @State private var title = ""
     @State private var tag = ""
     @State private var content = ""
+    @State private var selectedDate: Date?
+    
     @State private var tags: [String] = []
     
     @FocusState private var focused: FocusedField?
     @State private var selectedButton: ToolButtons?
+    
+    @State private var showDatePicker = false
     
     init() {
         UINavigationBar.appearance().titleTextAttributes =  [.foregroundColor: UIColor.white]
@@ -29,7 +33,6 @@ struct CreateMemory: View {
                 VStack {
                     TextField("Title", text: $title)
                         .focused($focused, equals: .title)
-                        
                         .onSubmit {
                             focused = nil
                         }
@@ -95,7 +98,7 @@ struct CreateMemory: View {
                         (ToolButtons.content, { focused = .content }),
                         (ToolButtons.tag, { focused = .tag }),
                         (ToolButtons.mappin, { print("Adding location...")}),
-                        (ToolButtons.date, { print("Adding date...")})
+                        (ToolButtons.date, { showDatePicker = true })
                     ])
                     .padding(.bottom, 10)
                 }
@@ -123,6 +126,9 @@ struct CreateMemory: View {
                     }
 
                 }
+            }
+            .sheet(isPresented: $showDatePicker) {
+                CustomDatePicker(pickedDate: <#T##Binding<Date>#>)
             }
         }
     }
