@@ -10,17 +10,24 @@ import SwiftUI
 struct CustomDatePicker: View {
     @State var currentDate: Date
     @State var currentMonth: Int
-    @State var newDate: Date
+//    @State var newDate: Date
+    @State var newSelectedDate: Date
     
-    @Binding var selectedDate: Date
+//    @Binding var selectedDate: Date
+    @Binding var selectedDate: Date?
+    @Binding var button: ToolButtons?
+    
     let days = ["S", "M", "T", "W", "T", "F", "S"]
     @Environment(\.dismiss) var dismiss
     
-    init(title: String? = nil, pickedDate: Binding<Date>) {
+//    init(title: String? = nil, pickedDate: Binding<Date>) {
+    init(title: String? = nil, selectedDate: Binding<Date?>, button: Binding<ToolButtons?>) {
         self._currentDate = State(initialValue: .now)
         self._currentMonth = State(initialValue: 0)
-        self._newDate = State(initialValue: .now)
-        self._selectedDate = pickedDate
+//        self._newDate = State(initialValue: .now)
+        self._newSelectedDate = State(initialValue: .now)
+        self._selectedDate = selectedDate
+        self._button = button
     }
     
     var body: some View {
@@ -87,13 +94,20 @@ struct CustomDatePicker: View {
             })
             HStack(spacing: 30) {
                 Button(action: {
-                    withAnimation(.spring) { selectedDate = currentDate }
+//                    withAnimation(.spring) { selectedDate = currentDate }
+                    withAnimation(.spring) {
+                        newSelectedDate = currentDate
+                        selectedDate = newSelectedDate
+                    }
+                    self.button = nil
+                    dismiss()
                 }, label: { Text("Save") })
                 
                 Button(action: {
                     withAnimation(.spring) {
                         currentDate = .now
-                        selectedDate = currentDate
+//                        selectedDate = currentDate
+                        selectedDate = nil
                     }
                 }, label: { Text("Clear") })
             }
@@ -105,10 +119,6 @@ struct CustomDatePicker: View {
         }
         .background(.toolbar)
         .clipShape(RoundedRectangle(cornerRadius: 10))
-        .onChange(of: currentDate) {
-            print("Current day is:", currentDate)
-            print("picked date is: ", selectedDate)
-        }
     }
     
     @ViewBuilder
@@ -120,10 +130,10 @@ struct CustomDatePicker: View {
                         .font(.system(size: 12, weight: .semibold))
                             .foregroundStyle(.white)
                             .frame(width: 20, height: 20)
-                } else if isSameDay(date1: selectedDate, date2: value.date) {
+                } else if isSameDay(date1: newSelectedDate, date2: value.date) {
                     Text("\(value.day)")
                         .font(.system(size: 12))
-                        .foregroundStyle(isSameDay(date1: value.date, date2: selectedDate) ? .white : .red)
+                        .foregroundStyle(isSameDay(date1: value.date, date2: newSelectedDate) ? .white : .red)
                 } else {
                     Text("\(value.day)")
                         .font(.system(size: 12, weight: .bold))
@@ -201,10 +211,10 @@ extension Date {
 
 
 #Preview(traits: .sizeThatFitsLayout, body: {
-    @Previewable @State var pickedDate: Date = .now
-    return  VStack {
-        CustomDatePicker(pickedDate: $pickedDate)
-        Text(pickedDate, style: .date)
+    @Previewable @State var selectedDate: Date? = .now
+    VStack {
+        CustomDatePicker(selectedDate: $selectedDate, button: .constant(nil))
+        Text(selectedDate!, style: .date)
     }
 })
 

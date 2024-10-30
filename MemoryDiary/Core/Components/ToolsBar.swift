@@ -55,7 +55,7 @@ struct ToolsBar: View {
         GeometryReader { geo in
             let size = geo.size
             VStack(alignment: .center) {
-                HStack(spacing: 10){
+                HStack(spacing: 12){
                     ForEach(toolButtons, id: \.0.icon) { button in
                         ToolButton(action: button.1, toolButton: button.0, selectedButton: $selectedButton)
                             .foregroundStyle(.white)
@@ -64,7 +64,7 @@ struct ToolsBar: View {
                 .frame(width: size.width * 0.6)
                 .frame(height: 38)
 //                .background(.bg.opacity(0.7))
-                .background(.bg2)
+                .background(.toolbar)
                 .clipShape(
                     RoundedRectangle(cornerRadius: 5)
                 )

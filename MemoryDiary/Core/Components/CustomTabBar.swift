@@ -59,10 +59,10 @@ struct CustomTabBar: View {
             TabBarButton(animation: animation, tab: .profile, selectedTab: $selectedTab)
         }
         .frame(maxWidth: .infinity)
-        .padding(.top, 16)
-        .padding(.bottom, 24)
+        .padding(.top, 12)
+        .padding(.bottom, 18)
         .padding(.horizontal, 15)
-        .background(.black)
+        .background(.bg)
     }
 }
 #Preview(traits: .sizeThatFitsLayout, body: {

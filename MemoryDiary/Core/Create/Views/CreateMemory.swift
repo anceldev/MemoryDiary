@@ -5,8 +5,8 @@
 //  Created by Ancel Dev account on 24/10/24.
 //
 
+import Foundation
 import SwiftUI
-
 
 struct CreateMemory: View {
     enum FocusedField: Hashable {
@@ -23,6 +23,13 @@ struct CreateMemory: View {
     @State private var selectedButton: ToolButtons?
     
     @State private var showDatePicker = false
+    @State var memoryVM = MemorieViewModel()
+    
+    var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMMM"
+        return dateFormatter
+    }
     
     init() {
         UINavigationBar.appearance().titleTextAttributes =  [.foregroundColor: UIColor.white]
@@ -49,7 +56,11 @@ struct CreateMemory: View {
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
-
+//                        if selectedDate != nil {
+//                            Label((selectedDate?.formatted(dateFormatter))!, systemImage: "calendar")
+//                        }
+                    }
+                    VStack {
                         if selectedButton == .tag {
                             TextField("Add a tag", text: $tag)
                                 .focused($focused, equals: .tag)
@@ -72,22 +83,12 @@ struct CreateMemory: View {
                             .foregroundStyle(.white)
                     } else {
                         Text(content)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     Spacer()
                 }
                 .padding()
-                .onChange(of: focused, { _, newValue in
-                    switch newValue {
-                    case .title:
-                        selectedButton = .title
-                    case .tag:
-                        selectedButton = .tag
-                    case .content:
-                        selectedButton = .content
-                    case .none:
-                        selectedButton = nil
-                    }
-                })
                 VStack {
                     Spacer()
                     ToolsBar(selectedButton: $selectedButton, toolButtons: [
@@ -109,7 +110,8 @@ struct CreateMemory: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        print("Done...")
+                        print("Saving...")
+                        create()
                     } label: {
                         Text("Save")
                             .foregroundStyle(.white)
@@ -118,17 +120,31 @@ struct CreateMemory: View {
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        print("Cancel...")
+                        print("Canceling...")
+                        
                     } label: {
                         Text("Cancel")
                             .foregroundStyle(.red.opacity(0.45))
                             .fontWeight(.semibold)
                     }
-
                 }
             }
             .sheet(isPresented: $showDatePicker) {
-                CustomDatePicker(pickedDate: <#T##Binding<Date>#>)
+                CustomDatePicker(selectedDate: $selectedDate, button: $selectedButton)
+            }
+        }
+    }
+    
+    private func create() {
+        Task {
+            do {
+                try await memoryVM.createDocument(headerBackground: nil, backgroundShape: .circle, title: title, content: content, timestamp: selectedDate, location: nil, tags: tags)
+                self.title = ""
+                self.content = ""
+                self.selectedDate = nil
+                self.tags = []
+            } catch {
+                print(error.localizedDescription)
             }
         }
     }

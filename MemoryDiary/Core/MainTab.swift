@@ -20,7 +20,8 @@ struct MainTab: View {
             VStack(spacing: 0) {
                 switch selectedTab {
                 case .read:
-                    Text("Read tab")
+//                    MemoryView(Memory.preview)
+                    MemoriesList()
                 case .create:
                     CreateMemory()
                 case .profile:
@@ -38,6 +39,7 @@ struct MainTab: View {
                 }
                 Spacer()
                 CustomTabBar(selectedTab: $selectedTab)
+                    .shadow(color: .black, radius: 10, x: 10, y: 10)
             }
         }
         .background(.bg)

@@ -10,8 +10,6 @@ import Appwrite
 import AppwriteModels
 
 private let endpoint = "https://cloud.appwrite.io/v1"
-private let projectId = "66d0f68a00340aa63e54"
-
 
 @Observable
 class AppwriteClient {
@@ -21,10 +19,13 @@ class AppwriteClient {
     let account: Account
     let storage: Storage
     
+    private let endpoint = "https://cloud.appwrite.io/v1"
+    private let projectId = ProcessInfo.processInfo.environment["PROJECT_ID"]
+    
     init() {
         self.client = Client()
             .setEndpoint(endpoint)
-            .setProject(projectId)
+            .setProject(projectId ?? "")
         self.databases = Databases(client)
         self.account = Account(client)
         self.storage = Storage(client)

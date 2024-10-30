@@ -43,6 +43,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B43A83752CC9A11E00CC6367 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		B43A837C2CC9BE1F00CC6367 /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
+		B486E0C52CD24D2D00AD61FD /* Read */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Read; sourceTree = "<group>"; };
 		B4AFEFAA2CCA6E1400504804 /* Create */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Create; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -98,6 +99,7 @@
 		B49D5A132C962B1A00E036EB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B486E0C52CD24D2D00AD61FD /* Read */,
 				B4AFEFAA2CCA6E1400504804 /* Create */,
 				B43A837C2CC9BE1F00CC6367 /* Components */,
 				B49D5A042C962ABF00E036EB /* ContentView.swift */,
@@ -171,6 +173,7 @@
 			fileSystemSynchronizedGroups = (
 				B43A83752CC9A11E00CC6367 /* Services */,
 				B43A837C2CC9BE1F00CC6367 /* Components */,
+				B486E0C52CD24D2D00AD61FD /* Read */,
 				B4AFEFAA2CCA6E1400504804 /* Create */,
 			);
 			name = MemoryDiary;
